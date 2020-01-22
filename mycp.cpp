@@ -1,12 +1,22 @@
-int main(int argc, char const *argv[])
-{
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main(int argc, char const *argv[]){
  	ifstream fin;
  	ofstream fout;
 	
 	// check if there are enough arguments
-	
+	if (argc == 3){
+        cout << "There are the correct number of arguments.\n";
+    }
+    else{
+        cout << "Error, incorrect number of arguments.\n"
+        << "Two arguments are required: input file and output file.\n";
+    }
 	
 	// open the first file
+    fin.open(argv[1]);
  	
 	char c;
 
@@ -14,16 +24,21 @@ int main(int argc, char const *argv[])
  	{
  		cerr << " Cannot open the input file!" << endl;
  		return 1;
- 	}
+ 	}else{
+         cout << argv[1] << " input file has been opened.\n";
+    }
  	
 
 	// open the second file
-	
- 	if (fout.fail())
+	fout.open(argv[2]);
+
+ 	if (fout.fail()) // check if it is successful 
  	{
- 		cerr << " Cannot open the output file!" << endl;
+ 		cerr << "Cannot open the output file!" << endl;
  		return 1;
- 	}
+ 	}else{
+         cout << argv[2] << " output file has been opened.\n";
+    }
  	
  	while(fin.get(c)) 
 	{
@@ -34,6 +49,5 @@ int main(int argc, char const *argv[])
 
  	fout.close();
 
- 	 return 0;
-
- } 
+ 	return 0;
+} 
